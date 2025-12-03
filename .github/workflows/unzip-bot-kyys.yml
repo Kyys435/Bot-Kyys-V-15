@@ -1,0 +1,27 @@
+name: Unzip BOT KYYS V15
+on:
+  push:
+    paths:
+      - 'BOT KYYS V15.zip'   # Trigger khusus untuk file ini
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repo
+      - uses: actions/checkout@v3
+
+      # Unzip file BOT KYYS V15.zip
+      - name: Unzip BOT KYYS V15.zip
+        run: |
+          mkdir -p extracted
+          unzip "BOT KYYS V15.zip" -d extracted/
+
+      # Commit hasil unzip
+      - name: Commit extracted files
+        run: |
+          git config --local user.email "you@example.com"  # ganti dengan email GitHub kamu
+          git config --local user.name "Your Name"         # ganti dengan username GitHub kamu
+          git add extracted/
+          git commit -m "Add extracted files from BOT KYYS V15.zip"
+          git push
